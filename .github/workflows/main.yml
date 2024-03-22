@@ -1,8 +1,28 @@
+## Name of the workflow
 name: Hprofile Actions
+## How this workflow will trigger 
+## workflow_distpatch --> means on saying RUN
 on: workflow_dispatch
-jobs: 
-  Testing: 
+jobs:
+  ## Creating a job with name: Testing
+  Testing:
+    ## Specifying runner 
+    ## It is going to run a container with a Docker image of ubuntu
     runs-on: ubuntu-latest
-    steps: 
-      - name: Testing workflow
-        run: echo "workflow works !"
+    steps:
+    - name: Testing workflow
+      # run: echo "workflow works !" --> run action is only to run a command, 
+      # which we are not going to use in this place
+
+      # we have tools from github market place
+      # we are using checkout from actions sections, which is going to pull 
+      # source code from your central repository
+      uses: actions/checkout@v4
+
+    # maven is pre-build in ubuntu-latest runner
+    - name: Maven test
+      run: mvn test
+
+    - name: Checkstyle
+      run: mvn checkstyle:checkstyle
+
