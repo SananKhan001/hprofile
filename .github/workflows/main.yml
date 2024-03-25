@@ -2,7 +2,8 @@
 name: Hprofile Actions
 ## How this workflow will trigger 
 ## workflow_distpatch --> means on saying RUN
-on: workflow_dispatch
+## push --> means on every time when code is pushed
+on: [push, workflow_dispatch]
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: actapp ## repo-name
